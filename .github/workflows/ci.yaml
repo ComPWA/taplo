@@ -16,21 +16,6 @@ on:
       - master
 
 jobs:
-  auto_tag:
-    name: Tag Releases
-    if: (github.event_name == 'push' && github.ref_type == 'branch') || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.WORKFLOW_PAT }}
-          fetch-depth: 0
-      - uses: tamasfe/auto-tag@v5
-        with:
-          name: tamasfe
-          email: me@tamasfe.dev
-          token: ${{ secrets.WORKFLOW_PAT }}
-
   test:
     name: Test on Rust stable
     runs-on: ubuntu-latest
